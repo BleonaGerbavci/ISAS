@@ -1,6 +1,13 @@
-﻿namespace SocialMediaApp.Data
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+
+namespace SocialMediaApp.Data
 {
-    public class DataContext
+    public class DataContext : IdentityDbContext
     {
+        public DataContext(DbContextOptions<DataContext> options) : base(options) 
+        {
+
+        }
     }
 }
