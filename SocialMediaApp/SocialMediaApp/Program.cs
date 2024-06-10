@@ -32,6 +32,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddScoped<IUser, UserService>();
+builder.Services.AddScoped<IPost, PostService>();
 
 // Register IHttpClientFactory
 builder.Services.AddHttpClient();
