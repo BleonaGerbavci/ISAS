@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.DTOs;
 using SocialMediaApp.Interfaces;
+using SocialMediaApp.Models;
 
 namespace SocialMediaApp.Controllers
 {
@@ -10,10 +12,11 @@ namespace SocialMediaApp.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUser _userService;
-
+        
         public UserController(IUser userService)
         {
             _userService = userService;
+
         }
 
         [HttpGet("GetUsers")]

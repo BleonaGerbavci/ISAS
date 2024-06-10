@@ -10,6 +10,7 @@ namespace SocialMediaApp.Data
         public AutoMapperProfiles()
         {
             CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<Post, PostDTO>().ReverseMap();
         }
     }
 }

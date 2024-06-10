@@ -7,6 +7,7 @@ using SocialMediaApp.Data;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 
 namespace SocialMediaApp.Services
 {
@@ -54,7 +55,6 @@ namespace SocialMediaApp.Services
  
             dbUser.Name = updateUserDTO.Name ?? dbUser.Name;
             dbUser.Email = updateUserDTO.Email ?? dbUser.Email;
-            dbUser.PasswordHash = updateUserDTO.Password ?? dbUser.PasswordHash;
             dbUser.UserName = updateUserDTO.Username ?? dbUser.UserName;
             dbUser.Bio = updateUserDTO.Bio ?? dbUser.Bio;
             dbUser.ProfilePicture = updateUserDTO.ProfilePicture ?? dbUser.ProfilePicture;

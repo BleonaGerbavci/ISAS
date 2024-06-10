@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using SocialMediaApp.Data;
 using SocialMediaApp.Interfaces;
+using SocialMediaApp.Models;
 using SocialMediaApp.Services;
 using Swashbuckle.AspNetCore.Filters;
 
