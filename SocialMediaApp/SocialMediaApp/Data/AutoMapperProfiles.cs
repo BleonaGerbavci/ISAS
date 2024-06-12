@@ -11,7 +11,7 @@ namespace SocialMediaApp.Data
         {
             CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<Post, PostDTO>().ReverseMap();
-            CreateMap<Comment, ComentDTO>().ReverseMap();
+            CreateMap<Comment, CommentDTO>().ReverseMap();
         }
     }
 }
