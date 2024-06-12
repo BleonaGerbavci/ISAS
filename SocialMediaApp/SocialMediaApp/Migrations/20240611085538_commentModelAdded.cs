@@ -5,7 +5,7 @@
 namespace SocialMediaApp.Migrations
 {
     /// <inheritdoc />
-    public partial class userIdUpdated : Migration
+    public partial class commentModelAdded : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -3,20 +3,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SocialMediaApp.Models
 {
-    public class Post
+    public class Comment
     {
-        public int PostID { get; set; }
+        public int CommentID { get; set; }
 
-        [Required]
         [ForeignKey("User")]
         public string UserID { get; set; }
         public User User { get; set; }
 
-        public string Content { get; set; }
-        public string MediaType { get; set; }
-        public string MediaURL { get; set; }
-        public DateTime Timestamp { get; set; } = DateTime.UtcNow;
+        [ForeignKey("Post")]
+        public int PostID { get; set; }
+        public Post Post { get; set; }
 
-        public ICollection<Comment>? Comments { get; set; } = new List<Comment>();
+        public string Content { get; set; }
+        public DateTime Timestamp { get; set; } = DateTime.UtcNow;
     }
 }

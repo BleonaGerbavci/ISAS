@@ -67,6 +67,10 @@ namespace SocialMediaApp.Services
             if (dbPost == null)
                 return new NotFoundObjectResult("Post doesn't exist!!");
 
+            // Delete related comments
+            var postComments = await _context.Comments.Where(c => c.PostID == id).ToListAsync();
+            _context.Comments.RemoveRange(postComments);
+
             _context.Posts.Remove(dbPost);
             await _context.SaveChangesAsync();
             return new OkObjectResult("Post deleted successfully!");

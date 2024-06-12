@@ -70,6 +70,7 @@ namespace SocialMediaApp.Services
             if (dbUser == null)
                 return new NotFoundObjectResult("User doesn't exist!!");
 
+
             _context.Users.Remove(dbUser);
             await _context.SaveChangesAsync();
             return new OkObjectResult("User deleted successfully!");
