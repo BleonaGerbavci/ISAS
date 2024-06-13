@@ -16,7 +16,6 @@ namespace StressTests
         [PerfSetup]
         public void Setup(BenchmarkContext context)
         {
-            // Set up dependency injection
             var serviceProvider = new ServiceCollection()
                 .AddDbContext<DataContext>() 
                 .AddAutoMapper(typeof(CommentsStressTest)) 
