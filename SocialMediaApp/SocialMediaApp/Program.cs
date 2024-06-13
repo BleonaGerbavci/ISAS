@@ -34,6 +34,7 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddScoped<IUser, UserService>();
 builder.Services.AddScoped<IPost, PostService>();
 builder.Services.AddScoped<IComment, CommentService>();
+builder.Services.AddScoped<ILike, LikeService>();
 
 // Register IHttpClientFactory
 builder.Services.AddHttpClient();

@@ -15,6 +15,6 @@ namespace SocialMediaApp.Data
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Post> Posts { get; set; } = null!;
         public DbSet<Comment> Comments { get; set; } = null!;
-
+        public DbSet<Like> Likes { get; set; } = null!;
     }
 }
