@@ -35,6 +35,7 @@ builder.Services.AddScoped<IUser, UserService>();
 builder.Services.AddScoped<IPost, PostService>();
 builder.Services.AddScoped<IComment, CommentService>();
 builder.Services.AddScoped<ILike, LikeService>();
+builder.Services.AddScoped<IFile, FileService>();
 
 // Register IHttpClientFactory
 builder.Services.AddHttpClient();
