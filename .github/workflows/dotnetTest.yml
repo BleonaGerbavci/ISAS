@@ -12,16 +12,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Set up .NET
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '8.0.x'  # Specify the .NET version
 
     - name: Restore dependencies
-      run: dotnet restore C:\Users\bleon\OneDrive\Desktop\ISAS\SocialMediaApp\SocialMediaApp\SocialMediaApp.csproj
+      run: dotnet restore ./SocialMediaApp/SocialMediaApp.csproj
 
     - name: Build
-      run: dotnet build C:\Users\bleon\OneDrive\Desktop\ISAS\SocialMediaApp\SocialMediaApp\SocialMediaApp.csproj --configuration Release --no-restore
+      run: dotnet build ./SocialMediaApp/SocialMediaApp.csproj --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test C:\Users\bleon\OneDrive\Desktop\ISAS\SocialMediaApp\SocialMediaApp\SocialMediaApp.csproj --no-build --verbosity norma
+      run: dotnet test ./SocialMediaApp/SocialMediaApp.csproj --no-build --verbosity normal
