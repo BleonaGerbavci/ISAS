@@ -6,25 +6,33 @@ using SocialMediaApp.DTOs;
 using SocialMediaApp.Interfaces;
 using SocialMediaApp.Models;
 using System.Net.Http;
+using System.Security.Policy;
 
 namespace SocialMediaApp.Services
 {
     public class PostService : IPost
-    { 
-    
+    {
+
         private readonly DataContext _context;
         private readonly IMapper _mapper;
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ILogger<PostService> _logger;
 
-        public PostService(DataContext context, IMapper mapper, IHttpClientFactory httpClientFactory)
+        public PostService(DataContext context, IMapper mapper, ILogger<PostService> logger)
         {
             _context = context;
             _mapper = mapper;
-            _httpClientFactory = httpClientFactory;
+            _logger = logger;
         }
 
-        public async Task<ActionResult<List<PostDTO>>> GetPosts() =>
-            _mapper.Map<List<PostDTO>>(await _context.Posts.ToListAsync());
+        public async Task<ActionResult<List<PostDTO>>> GetPosts()
+            {
+            _logger.LogInformation("Fetching all posts");
+            var posts = await _context.Posts.ToListAsync();
+
+            _logger.LogInformation("Fetched {Count} posts", posts.Count);
+            return _mapper.Map<List<PostDTO>>(posts);
+
+        }
 
         public async Task<ActionResult<PostDTO>> GetPostById(int id)
         {

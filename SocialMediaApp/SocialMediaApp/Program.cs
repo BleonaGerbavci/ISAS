@@ -1,6 +1,10 @@
+using App.Metrics.AspNetCore;
+using App.Metrics.Formatters.Prometheus;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using OpenTelemetry.Metrics;
+using Prometheus;
 using SocialMediaApp.Data;
 using SocialMediaApp.Interfaces;
 using SocialMediaApp.Models;
@@ -12,9 +16,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options => 
+builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
     {
@@ -25,9 +28,22 @@ builder.Services.AddSwaggerGen(options =>
     options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 
+builder.Services.AddOpenTelemetry()
+    .WithMetrics(x =>
+    {
+        x.AddPrometheusExporter();
+
+        x.AddMeter("Microsoft.AspNetCore.Hosting",
+            "Microsoft.AspNetCore.Server.Kestrel");
+        x.AddView("request-duration",
+            new ExplicitBucketHistogramConfiguration
+            {
+                Boundaries = new[] { 0, 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.7 }
+            });
+    });
+
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
@@ -37,11 +53,7 @@ builder.Services.AddScoped<IComment, CommentService>();
 builder.Services.AddScoped<ILike, LikeService>();
 builder.Services.AddScoped<IFile, FileService>();
 
-// Register IHttpClientFactory
-builder.Services.AddHttpClient();
-
 builder.Services.AddAuthorization();
-
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()
     .AddEntityFrameworkStores<DataContext>();
 
@@ -56,10 +68,9 @@ if (app.Environment.IsDevelopment())
 
 app.MapIdentityApi<IdentityUser>();
 
+app.MapPrometheusScrapingEndpoint(); // Ensure this is correctly mapped
+
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using NBench;
 using SocialMediaApp.Data;
 using SocialMediaApp.DTOs;
@@ -17,17 +18,19 @@ namespace StressTests
         [PerfSetup]
         public void Setup(BenchmarkContext context)
         {
+           
             // Initialize the postService instance
             var serviceProvider = new ServiceCollection()
                 .AddAutoMapper(typeof(PostStressTest))
                 .AddHttpClient()
                 .BuildServiceProvider();
+            var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
 
             var dataContext = serviceProvider.GetService<DataContext>();
             var mapper = serviceProvider.GetService<IMapper>();
             var httpClientFactory = serviceProvider.GetService<IHttpClientFactory>();
-
-            postService = new PostService(dataContext, mapper, httpClientFactory);
+            var postsLogger = loggerFactory.CreateLogger<PostService>();
+            postService = new PostService(dataContext, mapper, postsLogger);
 
             testCounter = context.GetCounter("PostsCounter");
         }

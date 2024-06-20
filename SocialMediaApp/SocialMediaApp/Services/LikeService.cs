@@ -8,17 +8,15 @@ using SocialMediaApp.Models;
 
 namespace SocialMediaApp.Services
 {
-    public class LikeService : ILike
+    public class LikeService : ILike 
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
-        private readonly IHttpClientFactory _httpClientFactory;
 
-        public LikeService(DataContext context, IMapper mapper, IHttpClientFactory httpClientFactory)
+        public LikeService(DataContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper;
-            _httpClientFactory = httpClientFactory;
+            _mapper = mapper;    
         }
 
         public async Task<ActionResult<List<LikeDTO>>> GetLikes()

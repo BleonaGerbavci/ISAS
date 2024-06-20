@@ -24,9 +24,9 @@ namespace StressTests
 
             var dataContext = serviceProvider.GetService<DataContext>();
             var mapper = serviceProvider.GetService<IMapper>();
-            var httpClientFactory = serviceProvider.GetService<IHttpClientFactory>();
+            
 
-            commentService = new CommentService(dataContext, mapper, httpClientFactory);
+            commentService = new CommentService(dataContext, mapper);
 
             testCounter = context.GetCounter("CommentsCounter");
         }

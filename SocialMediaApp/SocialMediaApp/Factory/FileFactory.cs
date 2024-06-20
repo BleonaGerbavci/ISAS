@@ -20,7 +20,7 @@ namespace SocialMediaApp.Factory
         public static FileDetails CreateFileDetails(IFormFile fileData)
         {
             return FilesDictionary[fileData.ContentType];
-
+        }
 
             /* if (fileData.ContentType.Equals("image/png"))
              {
@@ -30,7 +30,7 @@ namespace SocialMediaApp.Factory
                      FileName = fileData.FileName,
                  };
              }
-             else if (fileData.ContentType.Equals(""))
+             else if (fileData.ContentType.Equals("video/mp4"))
              {
                  return new Video()
                  {
@@ -43,6 +43,6 @@ namespace SocialMediaApp.Factory
                  throw new Exception("Unsupported file type.");
              }
             */
-        }
+        
     }
 }

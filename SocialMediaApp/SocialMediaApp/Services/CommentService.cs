@@ -13,13 +13,11 @@ namespace SocialMediaApp.Services
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
-        private readonly IHttpClientFactory _httpClientFactory;
-
-        public CommentService(DataContext context, IMapper mapper, IHttpClientFactory httpClientFactory)
+       
+        public CommentService(DataContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
-            _httpClientFactory = httpClientFactory;
         }
 
         public async Task<ActionResult<List<CommentDTO>>> GetComments()
