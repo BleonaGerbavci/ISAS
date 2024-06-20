@@ -18,10 +18,10 @@ jobs:
         dotnet-version: '8.0.x'  # Specify the .NET version
 
     - name: Restore dependencies
-      run: dotnet restore ISAS\SocialMediaApp\SocialMediaApp\SocialMediaApp.csproj
+      run: dotnet restore C:\Users\bleon\OneDrive\Desktop\ISAS\SocialMediaApp\SocialMediaApp\SocialMediaApp.csproj
 
     - name: Build
-      run: dotnet build ISAS\SocialMediaApp\SocialMediaApp\SocialMediaApp.csproj --configuration Release --no-restore
+      run: dotnet build C:\Users\bleon\OneDrive\Desktop\ISAS\SocialMediaApp\SocialMediaApp\SocialMediaApp.csproj --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test ISAS\SocialMediaApp\SocialMediaApp\SocialMediaApp.csproj --no-build --verbosity norma
+      run: dotnet test C:\Users\bleon\OneDrive\Desktop\ISAS\SocialMediaApp\SocialMediaApp\SocialMediaApp.csproj --no-build --verbosity norma
