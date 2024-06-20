@@ -38,7 +38,7 @@ namespace SocialMediaApp.Services
         public async Task<ActionResult> AddLike(LikeDTO likeDTO)
         {
             if (likeDTO == null)
-                return new BadRequestObjectResult("Like cannot be null!");
+                return new BadRequestObjectResult("Like cannot be null!!!!");
 
             var like = _mapper.Map<Like>(likeDTO);
             await _context.Likes.AddAsync(like);
@@ -49,11 +49,11 @@ namespace SocialMediaApp.Services
         public async Task<ActionResult> UpdateLike(int id, UpdateLikeDTO likeDTO)
         {
             if (likeDTO == null)
-                return new BadRequestObjectResult("Like cannot be null!");
+                return new BadRequestObjectResult("Like cannot be null!!!");
 
             var dbLike = await _context.Likes.FindAsync(id);
             if (dbLike == null)
-                return new NotFoundObjectResult("Like doesn't exist!");
+                return new NotFoundObjectResult("Like doesn't exist!!!");
 
             dbLike.PostID = likeDTO.PostID;
             dbLike.CommentID = likeDTO.CommentID;
