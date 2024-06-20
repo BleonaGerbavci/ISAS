@@ -19,10 +19,10 @@ jobs:
         dotnet-version: '8.0.x'  # Specify the .NET version
 
     - name: Restore dependencies
-      run: dotnet restore ./SocialMediaApp/SocialMediaApp.csproj
+      run: dotnet restore SocialMediaApp/SocialMediaApp/SocialMediaApp.csproj
 
     - name: Build
-      run: dotnet build ./SocialMediaApp/SocialMediaApp.csproj --configuration Release --no-restore
+      run: dotnet build SocialMediaApp/SocialMediaApp/SocialMediaApp.csproj --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test ./SocialMediaApp/SocialMediaApp.csproj --no-build --verbosity normal
+      run: dotnet test SocialMediaApp/SocialMediaApp/SocialMediaApp.csproj --no-build --verbosity normal
